@@ -1,0 +1,210 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --bg-primary-color: #0c0c0c;
+  --text-primary-color: #ffffff;
+
+  --border-primary-color: #2a2a2a;
+  --bg-secondary-color: #0b1220;
+
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 40px;
+
+  --border-radius-xs: 6px;
+  --border-radius-sm: 10px;
+  --border-radius-md: 14px;
+  --border-radius-lg: 18px;
+  --block-size: 30px;
+}
+html,
+body {
+  height: 100%;
+  background: var(--bg-primary-color);
+  color: var(--text-primary-color);
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+}
+main {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  padding: var(--space-xl);
+}
+
+section {
+  width: min(900px, 100%);
+  height: min(820px, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-primary-color);
+  border-radius: var(--border-radius-lg);
+  padding: var(--space-xl);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+}
+.infos {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+}
+
+.info {
+  border: 1px solid var(--border-primary-color);
+  background: rgba(255, 255, 255, 0.03);
+  padding: var(--space-md);
+  border-radius: var(--border-radius-md);
+  text-align: center;
+}
+
+.info h3 {
+  font-size: 14px;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.info span {
+  display: inline-block;
+  margin-left: 6px;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.board {
+  border: 1px solid var(--border-primary-color);
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: var(--border-radius-lg);
+  flex-grow: 1;
+  display: grid;
+  grid-template-columns: repeat(var(--cols), var(--block-size));
+  grid-template-rows: repeat(var(--rows), var(--block-size));
+  justify-content: center;
+  align-content: center;
+  overflow: hidden;
+  position: relative;
+}
+.block {
+  width: var(--block-size);
+  height: var(--block-size);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+.snake {
+  background: linear-gradient(135deg, #00ff66, #00b84a);
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(0, 255, 102, 0.25);
+}
+.food {
+  background: linear-gradient(135deg, #ff0033, #ff8a00);
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(255, 0, 51, 0.35);
+}
+button {
+  width: 100%;
+  padding: 14px;
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--border-primary-color);
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+button:hover {
+  background: rgba(255, 255, 255, 0.09);
+  transform: translateY(-1px);
+}
+button:active {
+  transform: translateY(0px);
+}
+#restart,
+#pause {
+  width: 100%;
+}
+section button {
+  margin-top: 4px;
+}
+#message {
+  min-height: 26px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 700;
+  opacity: 0.95;
+  color: #ffd369;
+}
+.snake.head {
+  background: linear-gradient(135deg, #00e5ff, #0077ff);
+  box-shadow: 0 0 14px rgba(0, 200, 255, 0.35);
+}
+.mobile-controls {
+  display: none;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  user-select: none;
+}
+.mobile-controls .middle {
+  display: flex;
+  gap: 10px;
+}
+.ctrl {
+  width: 70px;
+  height: 55px;
+  border-radius: 14px;
+  font-size: 18px;
+  font-weight: 900;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+  cursor: pointer;
+  transition: 0.15s ease;
+}
+.ctrl:active {
+  transform: scale(0.95);
+  background: rgba(255, 255, 255, 0.12);
+}
+@media (max-width: 600px) {
+  section {
+    padding: var(--space-lg);
+    height: 100%;
+  }
+
+  .infos {
+    grid-template-columns: 1fr;
+  }
+
+  .info span {
+    font-size: 20px;
+  }
+
+  :root {
+    --block-size: 26px;
+  }
+}
+  @media (max-width: 768px) {
+  .mobile-controls {
+    display: flex;
+    flex-direction: column;
+  }
+}
