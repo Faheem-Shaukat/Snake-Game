@@ -1,4 +1,5 @@
-* {
+
+*{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -8,7 +9,6 @@
   --text-primary-color: #ffffff;
 
   --border-primary-color: #2a2a2a;
-  --bg-secondary-color: #0b1220;
 
   --space-xs: 4px;
   --space-sm: 8px;
@@ -50,12 +50,11 @@ main {
 }
 
 section {
-  width: min(900px, 100%);
-  height: min(820px, 100%);
+  width: min(1200px, 100%);
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
-
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--border-primary-color);
   border-radius: var(--border-radius-lg);
@@ -94,18 +93,20 @@ section {
   border: 1px solid var(--border-primary-color);
   background: rgba(255, 255, 255, 0.02);
   border-radius: var(--border-radius-lg);
-  flex-grow: 1;
+  aspect-ratio: 1 / 1;
+  width: min(85vmin, 900px);
+  margin: auto;
   display: grid;
-  grid-template-columns: repeat(var(--cols), var(--block-size));
-  grid-template-rows: repeat(var(--rows), var(--block-size));
-  justify-content: center;
-  align-content: center;
+  grid-template-columns: repeat(var(--cols), 1fr);
+  grid-template-rows: repeat(var(--rows), 1fr);
+  border: 1px solid var(--border-primary-color);
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: var(--border-radius-lg);
   overflow: hidden;
-  position: relative;
 }
 .block {
-  width: var(--block-size);
-  height: var(--block-size);
+   width: 100%;
+  height: 100%;
   border: 1px solid rgba(255, 255, 255, 0.04);
 }
 .snake {
@@ -184,10 +185,22 @@ section button {
   transform: scale(0.95);
   background: rgba(255, 255, 255, 0.12);
 }
+
+@media (max-width: 768px) {
+  .mobile-controls {
+    display: flex;
+    flex-direction: column;
+  }
+}
 @media (max-width: 600px) {
   section {
-    padding: var(--space-lg);
-    height: 100%;
+    padding: var(--space-md);
+    height: auto;
+    min-height: 100vh;
+  }
+
+  main {
+    padding: var(--space-md);
   }
 
   .infos {
@@ -202,9 +215,8 @@ section button {
     --block-size: 26px;
   }
 }
-  @media (max-width: 768px) {
-  .mobile-controls {
-    display: flex;
-    flex-direction: column;
+@media (max-width: 480px) {
+  :root {
+    --block-size: 18px;
   }
 }
